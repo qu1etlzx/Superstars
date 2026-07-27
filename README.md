@@ -1,2 +1,0 @@
-# Superstars
-Fff
