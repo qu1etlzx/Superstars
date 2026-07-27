@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUPERSTARS — Loja Oficial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --white:#f7f7f5;
+    --chrome:#b8b8b8;
+    --line:#2a2a2a;
+    --line-light:#dcdcd8;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--white);
+    color:var(--black);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--black);color:var(--white);}
+
+  h1,h2,h3,.display{
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:-0.02em;
+    line-height:0.92;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- MARQUEE TOP BAR ---------- */
+  .marquee-bar{
+    background:var(--black);
+    color:var(--white);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--black);
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation:scroll 22s linear infinite;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.15em;
+    padding:9px 0;
+  }
+  .marquee-track span{
+    padding:0 28px;
+    display:inline-flex;
+    align-items:center;
+    gap:28px;
+  }
+  .marquee-track span::after{
+    content:"★";
+    font-size:10px;
+  }
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 5vw;
+    position:sticky;
+    top:0;
+    background:var(--white);
+    z-index:100;
+    border-bottom:1px solid var(--line-light);
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size:22px;
+    letter-spacing:-0.03em;
+  }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;
+    width:0;
+    height:2px;
+    background:var(--black);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cart{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    border:1.5px solid var(--black);
+    padding:8px 16px;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .nav-cart:hover{background:var(--black);color:var(--white);}
+
+  .nav-burger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:32px;
+    height:32px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+  }
+  .nav-burger span{
+    display:block;
+    height:2px;
+    width:100%;
+    background:var(--black);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-burger.open span:nth-child(2){opacity:0;}
+  .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed;
+    inset:0;
+    top:0;
+    background:var(--white);
+    z-index:99;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    gap:26px;
+    padding:0 8vw;
+    transform:translateY(-100%);
+    transition:transform .35s ease;
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{
+    font-family:'Archivo Black', sans-serif;
+    font-size:12vw;
+    text-transform:uppercase;
+    line-height:1;
+  }
+  .mobile-menu .nav-cart{margin-top:20px;}
+
+  @media (max-width:800px){
+    .nav-links{display:none;}
+    .nav-burger{display:flex;}
+    nav .nav-cart{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:8vw 5vw 6vw;
+    display:grid;
+    grid-template-columns:1fr;
+    border-bottom:1px solid var(--line-light);
+  }
+  .hero-word{
+    font-size:clamp(58px, 13vw, 190px);
+    display:flex;
+    flex-wrap:wrap;
+  }
+  .hero-word .outline{
+    -webkit-text-stroke:2px var(--black);
+    color:var(--white);
+  }
+  .hero-sub{
+    margin-top:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .hero-tagline{
+    font-size:15px;
+    max-width:340px;
+    line-height:1.5;
+    color:#444;
+  }
+  .hero-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    background:var(--black);
+    color:var(--white);
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:16px 30px;
+    border:1.5px solid var(--black);
+    transition:transform .2s ease;
+  }
+  .hero-cta:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--black);}
+
+  .hero-stamp{
+    position:absolute;
+    top:8vw;
+    right:5vw;
+    width:110px;
+    height:110px;
+    border:1.5px solid var(--black);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:spin 14s linear infinite;
+  }
+  .hero-stamp svg{width:100%;height:100%;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media (max-width:800px){.hero-stamp{display:none;}}
+
+  /* ---------- MARQUEE MID ---------- */
+  .strip{
+    background:var(--black);
+    color:var(--white);
+    padding:16px 0;
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--black);
+  }
+  .strip-track{
+    display:inline-flex;
+    animation:scroll 30s linear infinite reverse;
+  }
+  .strip-track span{
+    font-family:'Archivo Black', sans-serif;
+    font-size:36px;
+    text-transform:uppercase;
+    padding:0 30px;
+    letter-spacing:-0.01em;
+    -webkit-text-stroke:1px var(--white);
+    color:transparent;
+  }
+  .strip-track span:nth-child(odd){
+    color:var(--white);
+    -webkit-text-stroke:0;
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:60px 5vw 30px;
+  }
+  .section-head h2{font-size:clamp(30px,5vw,52px);}
+  .section-head .count{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.1em;
+    color:#888;
+  }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line-light);
+    border-left:1px solid var(--line-light);
+  }
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    border-right:1px solid var(--line-light);
+    border-bottom:1px solid var(--line-light);
+    padding:26px;
+    position:relative;
+    overflow:hidden;
+    min-height:340px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    cursor:pointer;
+  }
+  .card .tag{
+    position:absolute;
+    top:22px;
+    left:22px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    background:var(--black);
+    color:var(--white);
+    padding:4px 10px;
+  }
+  .card .swatch{
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(135deg, var(--black) 0 2px, transparent 2px 26px);
+    opacity:0.06;
+    transition:opacity .3s ease, transform .5s ease;
+  }
+  .card:hover .swatch{opacity:0.14;transform:scale(1.06);}
+  .card h3{
+    font-size:22px;
+    position:relative;
+    z-index:2;
+  }
+  .card .price{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:600;
+    position:relative;
+    z-index:2;
+  }
+  .card .arrow{
+    position:absolute;
+    bottom:22px;
+    right:22px;
+    font-size:20px;
+    transform:rotate(45deg);
+    transition:transform .25s ease;
+  }
+  .card:hover .arrow{transform:rotate(90deg);}
+
+  .card.accent{
+    background:var(--black);
+    color:var(--white);
+    border:2px solid var(--black);
+    margin:-1px;
+    z-index:1;
+  }
+  .card.accent .tag{
+    background:var(--white);
+    color:var(--black);
+  }
+  .card.accent .price{color:var(--chrome);}
+  .card.accent .swatch{
+    background:
+      repeating-linear-gradient(135deg, var(--white) 0 2px, transparent 2px 26px);
+    opacity:0.1;
+  }
+  .card.accent:hover .swatch{opacity:0.22;}
+  .card.accent .arrow{color:var(--white);}
+
+  /* ---------- MANIFESTO ---------- */
+  .manifesto{
+    padding:100px 5vw;
+    background:var(--black);
+    color:var(--white);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  @media (max-width:800px){.manifesto{grid-template-columns:1fr;padding:80px 6vw;}}
+  .manifesto .eyebrow{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.2em;
+    color:var(--chrome);
+    margin-bottom:18px;
+  }
+  .manifesto h2{
+    font-size:clamp(30px,4.2vw,50px);
+    line-height:1.05;
+  }
+  .manifesto p{
+    font-size:15px;
+    line-height:1.7;
+    color:#c9c9c9;
+    max-width:440px;
+  }
+
+  /* ---------- SIZE STRIP ---------- */
+  .sizes{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    border-bottom:1px solid var(--line-light);
+    flex-wrap:wrap;
+  }
+  .sizes span{
+    flex:1;
+    text-align:center;
+    padding:26px 10px;
+    font-family:'Archivo Black', sans-serif;
+    font-size:clamp(20px,3vw,32px);
+    border-right:1px solid var(--line-light);
+    color:#ccc;
+    transition:color .2s ease, background .2s ease;
+  }
+  .sizes span:hover{color:var(--black);background:#efefec;}
+  .sizes span:last-child{border-right:none;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:70px 5vw 30px;
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:700px){footer{grid-template-columns:1fr 1fr;}}
+  footer .logo{font-size:30px;margin-bottom:14px;}
+  footer p{font-size:13px;color:#777;max-width:260px;line-height:1.5;}
+  footer h4{
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+    color:#999;
+  }
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  footer li a{font-size:14px;font-weight:500;}
+  footer li a:hover{text-decoration:underline;}
+  .footer-bottom{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line-light);
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#999;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track,.strip-track,.hero-stamp{animation:none;}
+  }
+
+  /* ---------- MOBILE REFINEMENTS ---------- */
+  @media (max-width:600px){
+    nav{padding:16px 6vw;}
+    .marquee-track{font-size:11px;}
+    .marquee-track span{padding:0 18px;gap:18px;}
+
+    .hero{padding:14vw 6vw 12vw;}
+    .hero-word{font-size:clamp(46px,16vw,80px);}
+    .hero-sub{flex-direction:column;align-items:flex-start;gap:22px;}
+    .hero-tagline{max-width:none;}
+    .hero-cta{width:100%;justify-content:center;}
+
+    .strip-track span{font-size:24px;padding:0 18px;}
+
+    .section-head{flex-direction:column;align-items:flex-start;gap:6px;padding:44px 6vw 22px;}
+
+    .grid{border-left:none;}
+    .card{padding:20px;min-height:260px;border-right:1px solid var(--line-light);}
+
+    .manifesto{padding:64px 6vw;gap:36px;}
+
+    .sizes span{flex:1 1 33.333%;font-size:22px;padding:20px 8px;border-bottom:1px solid var(--line-light);}
+    .sizes span:nth-child(3n){border-right:none;}
+
+    footer{grid-template-columns:1fr 1fr;gap:32px;padding:56px 6vw 24px;}
+    footer > div:first-child{grid-column:1/-1;}
+    .footer-bottom{flex-direction:column;gap:6px;}
+  }
+
+  @media (max-width:400px){
+    .hero-word{font-size:clamp(38px,17vw,60px);}
+    .sizes span{flex:1 1 50%;}
+    .sizes span:nth-child(3n){border-right:1px solid var(--line-light);}
+    .sizes span:nth-child(2n){border-right:none;}
+  }
+
+  a:focus-visible, .hero-cta:focus-visible, .nav-cart:focus-visible{
+    outline:2px solid var(--black);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>FRETE GRÁTIS ACIMA DE R$300</span>
+      <span>NOVA COLEÇÃO DISPONÍVEL</span>
+      <span>EDIÇÃO LIMITADA — SÓ ATÉ ACABAR</span>
+      <span>FRETE GRÁTIS ACIMA DE R$300</span>
+      <span>NOVA COLEÇÃO DISPONÍVEL</span>
+      <span>EDIÇÃO LIMITADA — SÓ ATÉ ACABAR</span>
+    </div>
+  </div>
+
+  <nav>
+    <div class="logo">SUPERSTARS™</div>
+    <div class="nav-links">
+      <a href="#drop">Drop</a>
+      <a href="#manifesto">Sobre</a>
+      <a href="#sizes">Tamanhos</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="nav-cart">Carrinho (0)</div>
+    <button class="nav-burger" id="burgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#drop">Drop</a>
+    <a href="#manifesto">Sobre</a>
+    <a href="#sizes">Tamanhos</a>
+    <a href="#contato">Contato</a>
+    <div class="nav-cart">Carrinho (0)</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-stamp">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <path id="circlePath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" fill="none"/>
+        </defs>
+        <text font-size="8.2" letter-spacing="2" fill="#0a0a0a" font-family="Space Grotesk">
+          <textPath href="#circlePath">★ SUPERSTARS CLUB ★ EST. NA RUA ★ SUPERSTARS CLUB ★</textPath>
+        </text>
+      </svg>
+    </div>
+
+    <h1 class="hero-word">
+      <span>SUPER</span><span class="outline">STARS</span>
+    </h1>
+
+    <div class="hero-sub">
+      <p class="hero-tagline">Roupa não é uniforme, é assinatura. Peças feitas pra quem entra numa sala e a sala inteira sabe quem chegou.</p>
+      <a href="#drop" class="hero-cta">Ver o drop →</a>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-track">
+      <span>SUPERSTARS</span><span>SUPERSTARS</span><span>SUPERSTARS</span><span>SUPERSTARS</span>
+      <span>SUPERSTARS</span><span>SUPERSTARS</span><span>SUPERSTARS</span><span>SUPERSTARS</span>
+    </div>
+  </div>
+
+  <section id="drop">
+    <div class="section-head">
+      <h2>O Drop</h2>
+      <span class="count">04 PEÇAS · ESTOQUE LIMITADO</span>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <span class="tag">Mais vendido</span>
+        <div class="swatch"></div>
+        <h3>Moletom Blackout</h3>
+        <div class="price">R$ 289,90</div>
+        <span class="arrow">↗</span>
+      </div>
+
+      <div class="card">
+        <span class="tag">Novo</span>
+        <div class="swatch"></div>
+        <h3>Boné Aba Reta SS</h3>
+        <div class="price">R$ 129,90</div>
+        <span class="arrow">↗</span>
+      </div>
+
+      <div class="card accent">
+        <span class="tag">Restock</span>
+        <div class="swatch"></div>
+        <h3>Camiseta Oversized Chrome</h3>
+        <div class="price">R$ 149,90</div>
+        <span class="arrow">↗</span>
+      </div>
+
+      <div class="card accent">
+        <span class="tag">Última peça</span>
+        <div class="swatch"></div>
+        <h3>Jaqueta Corta-Vento SS</h3>
+        <div class="price">R$ 399,90</div>
+        <span class="arrow">↗</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="manifesto" id="manifesto">
+    <div>
+      <div class="eyebrow">MANIFESTO — 001</div>
+      <h2>Feito na rua,<br>usado no topo.</h2>
+    </div>
+    <p>Superstars nasceu de quem ficava na esquina sonhando grande. Cada peça carrega esse peso: caimento reto, tecido pesado, corte que não pede desculpa. Não vendemos roupa básica. Vendemos a prova de que você chegou.</p>
+  </section>
+
+  <section id="sizes">
+    <div class="sizes">
+      <span>PP</span><span>P</span><span>M</span><span>G</span><span>GG</span><span>XG</span>
+    </div>
+  </section>
+
+  <footer id="contato">
+    <div>
+      <div class="logo">SUPERSTARS™</div>
+      <p>Streetwear de verdade, feito pra quem não passa despercebido. Coleções limitadas, sem reposição garantida.</p>
+    </div>
+    <div>
+      <h4>Loja</h4>
+      <ul>
+        <li><a href="#drop">Novidades</a></li>
+        <li><a href="#drop">Mais vendidos</a></li>
+        <li><a href="#sizes">Guia de tamanhos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte</h4>
+      <ul>
+        <li><a href="#">Trocas e devoluções</a></li>
+        <li><a href="#">Rastrear pedido</a></li>
+        <li><a href="#">Fale conosco</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Segue a gente</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom" style="grid-column:1/-1;">
+      <span>© 2026 Superstars. Todos os direitos reservados.</span>
+      <span>Feito pra ser usado, não guardado.</span>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burgerBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    function toggleMenu(){
+      const isOpen = menu.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    burger.addEventListener('click', toggleMenu);
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(menu.classList.contains('open')) toggleMenu();
+      });
+    });
+  </script>
+</body>
+</html>
